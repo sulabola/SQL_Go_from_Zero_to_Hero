@@ -10,6 +10,10 @@ This repository documents my learning from the Udemy course *The Complete SQL Bo
 
 [pgAdmin](https://www.pgadmin.org/) (pgAdmin is the most popular and feature-rich Open Source administration and development platform for PostgreSQL)
 
+### Database
+
+The sample database used in these exercises is available in the `Database` folder of the repository. It also contains an image that describes the table names, column names of each table, and relationships between the tables.
+
 ---
 
 ### Reference
