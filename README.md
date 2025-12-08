@@ -4,6 +4,12 @@ This repository documents my learning from the Udemy course *The Complete SQL Bo
 
 ---
 
+### Programming Language
+
+[PostgreSQL](https://www.postgresql.org/)
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
