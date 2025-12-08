@@ -82,9 +82,79 @@ SELECT COUNT(DISTINCT amount) FROM payment;
 -- Comparison Operators (=, >, <, >=, <=, <>, !=)
 -- Logical Operators (AND, OR, NOT)
 
+SELECT * FROM customer;
 
+-- Task: Who has customer name "Jared"?
 
+SELECT *
+FROM customer
+WHERE first_name = 'Jared';
 
+-- Example: Combine logical operators
+
+SELECT * FROM film;
+
+-- Task: Find rental rates higher than $4.00.
+
+SELECT *
+FROM film
+WHERE rental_rate > 4;
+
+-- Task: Find rental rates higher than $4.00 and expensive to replace.
+
+SELECT *
+FROM film
+WHERE rental_rate > 4 AND replacement_cost >= 19.99;
+
+SELECT *
+FROM film
+WHERE rental_rate > 4 AND replacement_cost >= 19.99 AND rating = 'R';
+
+SELECT title
+FROM film
+WHERE rental_rate > 4 AND replacement_cost >= 19.99 AND rating = 'R';
+
+-- Let's assume we want to know how many titles are there which satisfies all these conditions.
+
+SELECT COUNT(title)
+FROM film
+WHERE rental_rate > 4 AND replacement_cost >= 19.99 AND rating = 'R';
+
+-- Alternatively:
+
+SELECT COUNT(*)
+FROM film
+WHERE rental_rate > 4 AND replacement_cost >= 19.99 AND rating = 'R';
+
+-- Task: Movies with "R" or "PG-13" ratings.
+
+SELECT COUNT(*)
+FROM film
+WHERE rating = 'R' OR rating = 'PG-13';
+
+-- Everything is not "R" rated.
+
+SELECT COUNT(*)
+FROM film
+WHERE rating != 'R';
+
+-- Challenge 1: Need to find the email of a particular customer (Nancy Thomas).
+
+SELECT email
+FROM customer
+WHERE first_name = 'Nancy' AND last_name = 'Thomas';
+
+-- Challenge 2: Get the desciption of a particular movie (Outlaw Hanky)
+
+SELECT description
+FROM film
+WHERE title = 'Outlaw Hanky'
+
+-- Challenge 3: Get the phone number of a customer based on the address (259 Ipoh Drive)
+
+SELECT phone
+FROM address
+WHERE address = '259 Ipoh Drive'
 
 
 
