@@ -6,7 +6,9 @@ This repository documents my learning from the Udemy course *The Complete SQL Bo
 
 ### Programming Language
 
-[PostgreSQL](https://www.postgresql.org/)
+[PostgreSQL](https://www.postgresql.org/) (PostgreSQL is a powerful, open source object-relational database system)
+
+[pgAdmin](https://www.pgadmin.org/) (pgAdmin is the most popular and feature-rich Open Source administration and development platform for PostgreSQL)
 
 ---
 
