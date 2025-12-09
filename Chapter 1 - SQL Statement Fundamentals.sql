@@ -391,7 +391,7 @@ FROM film
 WHERE rating = 'R' AND replacement_cost BETWEEN 5 AND 15;
 
 -- General challenge 6
--- How many films have the word Truma somewhere in the title
+-- How many films have the word Truman somewhere in the title
 
 SELECT COUNT(title)
 FROM film
