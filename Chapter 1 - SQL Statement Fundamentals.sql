@@ -231,13 +231,169 @@ FROM film
 ORDER BY length ASC
 LIMIT 5;
 
+-- Challenge 3: If a customer can watch any movie that is 50 minutes or less, how many options customer have?
 
+SELECT COUNT(title)
+FROM film
+WHERE length <= 50
 
+-- "BETWEEN" Command
 
+-- This operator can be used to match a value against a range of values.
+-- This is same as checking a value >= LOW AND value <= HIGH (including the end points).
+-- We can combine the "BETWEEN" with "NOT" logical operator. That is, value < LOW OR > HIGH.
+-- This can be used with dates. But it needs to be in the ISO 8601 format (YYYY-MM-DD).
 
+SELECT *
+FROM payment
+LIMIT 2;
 
+-- Task: Number of payments between $8 and $9
 
+SELECT COUNT(*)
+FROM payment
+WHERE amount BETWEEN 8 and 9;
 
+-- Task: Number of payments NOT between $8 and $9
 
+SELECT COUNT(*)
+FROM payment
+WHERE amount NOT BETWEEN 8 and 9;
 
+-- Task: The payments during the first half of February
+
+SELECT *
+FROM payment
+WHERE payment_date BETWEEN '2007-02-01' AND '2007-02-15';
+
+-- "IN" Operator
+
+-- This is useful when we want to check formultiple possible value options.
+-- E.g., name = John, name = Max, name = Karl, ...
+
+-- Syntax: WHERE value IN (option1. option2, option3, ...)
+
+-- We can also use this with "NOT" logical operator: WHERE value NOT IN (option1. option2, option3, ...)
+
+SELECT *
+FROM payment
+WHERE amount IN (0.99, 1.98, 1.99);
+
+-- Task: How may payments have ocuured with 0.99, 1.98, and 1.99?
+
+SELECT COUNT(*)
+FROM payment
+WHERE amount IN (0.99, 1.98, 1.99);
+
+-- Task: How may payments have NOT ocuured with 0.99, 1.98, and 1.99?
+
+SELECT COUNT(*)
+FROM payment
+WHERE amount NOT IN (0.99, 1.98, 1.99);
+
+-- Task: Select customers: 'John', 'Jake', 'Julie'
+
+SELECT *
+FROM customer
+WHERE first_name IN ('John', 'Jake', 'Julie');
+
+-- "LIKE" and "ILIKE" Commands
+
+-- In the previous command, we perform direct comparisons.
+-- What if we want to match against a general pattern in a string.
+-- E.g., emails ending in "@gmail.com", names begin with an "A"
+
+-- "LIKE" allows pattern matching againts string data with the use of 'wildcard' characters.
+-- wildcard 1: "%" - matches any sequence of characters
+-- wildcard 2: "_" - matches any single character
+
+-- All names that begin with an "A": WHERE name LIKE 'A%'
+-- All names end with an "a": WHERE name LIKE '%a'
+
+-- Note: "LIKE" is case-sensitive. "ILIKE" is case-insensitive.
+
+-- "_" alows us to repalce a single character
+-- Get Mission Impossible films: WHERE title LIKE 'Mission Impossible _'
+
+-- We can also use multiple underscores.
+-- If we had different versions: 'Version#A4' "Version#B7"
+-- WHERE value LIKE 'Version#__'
+
+-- We can also combine both. WHERE name LIKE '_her%'. Result: Cheryl, Theresa, Sherri,...
+
+-- Task: How many people start their first name with letter 'J'
+
+SELECT COUNT(*)
+FROM customer
+WHERE first_name LIKE 'J%';
+
+-- Task: How many people start their first name with 'J' and last name with 'S'
+
+SELECT COUNT(*)
+FROM customer
+WHERE first_name LIKE 'J%' AND last_name LIKE 'S%';
+
+-- Case-insensitive
+
+SELECT COUNT(*)
+FROM customer
+WHERE first_name ILIKE 'j%' AND last_name ILIKE 's%';
+
+SELECT first_name
+FROM customer
+WHERE first_name LIKE '_her%';
+
+SELECT *
+FROM customer
+WHERE first_name LIKE 'A%'
+ORDER BY last_name;
+
+SELECT *
+FROM customer
+WHERE first_name LIKE 'A%' AND last_name NOT LIKE 'B%'
+ORDER BY last_name;
+
+-- General challenge 1
+-- How many payment transactions were greater than $5
+
+SELECT COUNT(amount)
+FROM payment
+WHERE amount > 5;
+
+-- General challenge 2
+-- How many actors have a first name that starts with the letter 'P'
+
+SELECT COUNT(*)
+FROM actor
+WHERE first_name LIKE 'P%';
+
+-- General challenge 3
+-- How many unique districts are our customers from
+
+SELECT COUNT(DISTINCT district)
+FROM address;
+
+-- General challenge 4
+-- List of names of the unique districts
+
+SELECT DISTINCT (district)
+FROM address;
+
+-- General challenge 5
+-- How many films have a rating of R and a replacement cost between $5 and $15
+
+SELECT *
+FROM film
+LIMIT 10;
+
+SELECT COUNT(*)
+FROM film
+WHERE rating = 'R' AND replacement_cost BETWEEN 5 AND 15;
+
+-- General challenge 6
+-- How many films have the word Truma somewhere in the title
+
+SELECT COUNT(title)
+FROM film
+WHERE title LIKE '%Truman%';
 
