@@ -16,6 +16,12 @@ The sample database used in these exercises is available in the `Database` folde
 
 ---
 
+### Chapter 1 – SQL Statement Fundamentals
+
+This chapter provides an introduction to core SQL querying techniques. This chapter includes syntax explanations, examples, and concise notes on essential commands such as `SELECT`, `SELECT DISTINCT`, `COUNT`, filtering with `WHERE`, sorting with `ORDER BY`, limiting results with `LIMIT`, and using conditional operators including `BETWEEN`, `IN`, `LIKE`, and `ILIKE`. These foundational skills support effective data exploration and form the basis for more advanced SQL analysis in later chapters.
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
