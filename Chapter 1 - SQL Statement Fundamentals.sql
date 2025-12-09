@@ -156,6 +156,87 @@ SELECT phone
 FROM address
 WHERE address = '259 Ipoh Drive'
 
+-- "ORDER BY" Statement
+
+-- This allow user to sort rows based on a column value (ascending/descending)
+
+-- Syntax:	SELECT column names(s)
+--			FROM table name
+--			ORDER BY column name ASC/DESC
+
+-- Note: We can use ORDER BY with multiple columns
+
+SELECT * FROM customer;
+
+-- Order everything by the customer first name
+
+SELECT *
+FROM customer
+ORDER BY first_name ASC; -- (automatically ASC order)
+
+SELECT store_id, first_name, last_name
+FROM customer
+ORDER BY store_id, first_name ASC;
+
+-- Note: We can add ASC/DESC for each column
+
+SELECT store_id, first_name, last_name
+FROM customer
+ORDER BY store_id ASC, first_name DESC;
+
+-- "LIMIT" Statement
+
+-- This limits the number of rows returned for a query. (useful to get idea about the table layout)
+-- This would be the last command to be executed.
+
+SELECT * FROM payment;
+
+-- Investigate oldest and most recent payments
+
+SELECT *
+FROM payment
+ORDER BY payment_date DESC;
+
+-- Task: What are the 5 most recent payments?
+
+SELECT *
+FROM payment
+ORDER BY payment_date DESC
+LIMIT 5;
+
+-- We can see that for some payments, the payment amony is 0.
+-- Let's view 10 most recent payments with non-zero payments.
+
+SELECT *
+FROM payment
+WHERE amount != 0
+ORDER BY payment_date DESC
+LIMIT 5;
+
+-- Challenge 1: What are the customer IDs of the first 10 who created a payment?
+
+SELECT customer_id
+FROM payment
+ORDER BY payment_date ASC
+LIMIT 10;
+
+-- Challenge 2: What are the titles of 5 shortest (in length of runtime) movies?
+
+SELECT *
+FROM film
+LIMIT 5;
+
+SELECT title, length
+FROM film
+ORDER BY length ASC
+LIMIT 5;
+
+
+
+
+
+
+
 
 
 
