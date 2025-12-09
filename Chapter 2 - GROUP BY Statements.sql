@@ -16,6 +16,26 @@ FROM film;
 SELECT MAX(replacement_cost)
 FROM film;
 
+SELECT MIN(replacement_cost), MAX(replacement_cost)
+FROM film;
+
+-- Task: Average replacement cost
+
+SELECT AVG(replacement_cost)
+FROM film;
+
+-- Note: Average by default keep so many decimal places. So we can use "ROUND" function.
+-- "ROUND" function takes 2 arguments: value, # of decimal places
+
+SELECT ROUND(AVG(replacement_cost),3)
+FROM film;
+
+-- Task: We start a new shop and need to replace all the movies. What is the replacement cost?
+
+SELECT SUM(replacement_cost)
+FROM film;
+
+
 
 
 
