@@ -47,10 +47,126 @@ FROM film;
 
 -- Note: In the SELECT statement, columns must either have an aggregate functions or be in the GROUP BY call.
 
+-- Example 1:
 
+--	SELECT company, division, SUM(sales)
+--	FROM finance_table
+--	WHERE division IN ('marketing', 'transport')
+--	GROUP BY company, division
 
+-- Example 2:
 
+--	SELECT company, SUM(sales)
+--	FROM finance_table
+--	GROUP BY company
+--	ORDER BY SUM(sales)
 
+SELECT *
+FROM payment;
 
+SELECT customer_id
+FROM payment
+GROUP BY customer_id
+ORDER BY customer_id;
 
+-- Task: What customer is spending the most money?
 
+SELECT customer_id, SUM(amount)
+FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount) DESC
+LIMIT 1;
+
+-- Task: Number of transactions per customer?
+
+SELECT customer_id, COUNT(amount)
+FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount);
+
+-- Group by two columns
+
+SELECT customer_id, staff_id, SUM(amount)
+FROM payment
+GROUP BY customer_id, staff_id
+ORDER BY customer_id;
+
+-- GROUP BY a date column (each group contain a day)
+
+SELECT DATE(payment_date), SUM(amount)
+FROM payment
+GROUP BY DATE(payment_date)
+ORDER BY SUM(amount) DESC;
+
+-- Challenge 1: How many payments each staff member handle and who gets the bonus (max # of payments)
+
+SELECT staff_id, COUNT(staff_id)
+FROM payment
+GROUP BY staff_id
+ORDER BY COUNT(staff_id) DESC;
+
+-- Challenge 2: What is the average replacement cost per MPAA rating?
+
+SELECT *
+FROM film;
+
+SELECT rating, ROUND(AVG(replacement_cost),2)
+FROM film
+GROUP BY rating
+ORDER BY AVG(replacement_cost);
+
+-- Challenge 3: What are the customer IDs of the top 5 customers by total spend?
+
+SELECT *
+FROM payment
+
+SELECT customer_id, SUM(amount)
+FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount) DESC
+LIMIT 5;
+
+-- "HAVING" Clause
+
+-- This allows us to filter after an aggregation has already taken place.
+
+-- Example: 
+
+--	SELECT company, SUM(sales)
+--	FROM finance_table
+--	GROUP BY company
+--	HAVING SUM(sales) > 1000
+
+SELECT *
+FROM payment;
+
+SELECT customer_id, SUM(amount)
+FROM payment
+GROUP BY customer_id
+HAVING SUM(amount) > 100;
+
+SELECT *
+FROM customer;
+
+SELECT store_id, COUNT(customer_id)
+FROM customer
+GROUP BY store_id
+HAVING COUNT(customer_id) > 300;
+
+-- Challenge 1: What customers are eligible for platinum status (more than or equal 40 transactions)?
+
+SELECT *
+FROM payment;
+
+SELECT customer_id, COUNT(payment_id)
+FROM payment
+GROUP BY customer_id
+HAVING COUNT(payment_id) >= 40;
+
+-- Challenge 2: Customers who spend more than $100 with staff memeber 2.
+
+SELECT customer_id, SUM(amount)
+FROM payment
+WHERE staff_id = '2'
+GROUP BY customer_id
+HAVING SUM(amount) > 100;
