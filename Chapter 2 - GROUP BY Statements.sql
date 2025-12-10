@@ -35,6 +35,20 @@ FROM film;
 SELECT SUM(replacement_cost)
 FROM film;
 
+-- "GROUP BY" Statement
+
+-- Allows to aggregate columns per some category.
+
+-- Syntax:	SELECT category column, AGG(data column)
+--			FROM table name
+--			GROUP BY category column
+
+-- "GROUP BY" appear right after "FROM"/"WHERE" statements.
+
+-- Note: In the SELECT statement, columns must either have an aggregate functions or be in the GROUP BY call.
+
+
+
 
 
 
