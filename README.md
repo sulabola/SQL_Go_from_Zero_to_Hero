@@ -22,6 +22,12 @@ This chapter provides an introduction to core SQL querying techniques. This chap
 
 ---
 
+### Chapter 2 – GROUP BY Statements:
+
+This chapter introduces essential SQL techniques for summarizing and analyzing data using `GROUP BY`. It covers core aggregation functions such as `COUNT()`, `SUM()`, `AVG()`, `MIN()`, and `MAX()`, along with practical examples that demonstrate how to group records effectively. The chapter also explains how to filter grouped results using the `HAVING` clause, enabling more refined analytical queries in real datasets.
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
