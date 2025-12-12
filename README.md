@@ -28,6 +28,12 @@ This chapter introduces essential SQL techniques for summarizing and analyzing d
 
 ---
 
+### Chapter 3 – JOINS
+
+This chapter focuses on combining data across multiple tables using SQL JOIN operations. It introduces the purpose and structure of JOINs, along with the use of the `AS` statement for creating readable aliases. The chapter covers `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT JOIN`, and `FULL OUTER JOIN` to handle different data relationship scenarios, as well as the `UNION` operator for merging results from multiple queries. Practical examples are included to demonstrate how joins are applied in real-world relational database queries.
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
