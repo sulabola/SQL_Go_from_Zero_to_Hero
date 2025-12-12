@@ -108,3 +108,20 @@ FROM customer;
 
 -- However, this does not verify the privacy policy.
 
+-- "LEFT OUTER JOIN" / "left JOIN"
+
+-- This results in the set of records that are in the left tables, if there is no match with the right tables, the results are null.
+
+-- Syntax:	SELECT *
+--			FROM TableA
+--			LEFT OUTER JOIN TableB ON TableA.col_match = TableB.col_match;
+
+-- Note: Here the order of the tables matter. (All in TableA and match records in TableB)
+-- Note: If the record is only in 'TableB', it will not report with the query.
+
+
+
+
+
+
+
