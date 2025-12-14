@@ -114,7 +114,59 @@ LIMIT 1;
 
 SELECT COUNT(*)
 FROM payment
-WHERE EXTRACT(dow FROM payment_date) = 1
+WHERE EXTRACT(dow FROM payment_date) = 1;
 
+-- "Mathematical Functions"
+
+-- We can perform basic and complex mathematical functions (+, -, /,...) and (abs(), log(), sqrt(),...)
+
+SELECT *
+FROM film;
+
+-- Task: Percentage of the rental rate as of the replacement cost.
+
+SELECT ROUND(rental_rate/replacement_cost,2)*100 AS percent_cost
+FROM film;
+
+SELECT 0.1*replacement_cost AS deposit
+FROM film;
+
+-- "String Functions and Operations"
+
+-- This allow us to edit, combine, and alter text data columns.
+
+SELECT *
+FROM customer;
+
+-- Task: Length of the first name.
+
+SELECT LENGTH(first_name)
+FROM customer;
+
+-- Task: Combine first name and last name.
+
+SELECT first_name || last_name
+FROM customer;
+
+-- Note: No space between first name and last name. Also, no column name.
+
+-- Add a space between first name and last name.
+
+SELECT first_name || ' ' || last_name
+FROM customer;
+
+SELECT first_name || ' ' || last_name AS full_name
+FROM customer;
+
+-- Further modify the output (upper case letters).
+
+SELECT UPPER(first_name) || ' ' || UPPER(last_name) AS full_name
+FROM customer;
+
+-- Task: Let's assume we do not have email for customers and we want to create email for them.
+-- We will use first letter of the first name and last name to create the email.
+
+SELECT LOWER(LEFT(first_name,1)) || LOWER(last_name) || '@gmail.com' AS customer_email
+FROM customer;
 
 
