@@ -34,6 +34,12 @@ This chapter focuses on combining data across multiple tables using SQL JOIN ope
 
 ---
 
+### Chapter 4 – Advanced SQL Commands
+
+This chapter focuses on advanced SQL techniques used for more complex data analysis tasks. It covers working with timestamp data using `EXTRACT` and `TO_CHAR`, applying mathematical functions and operators, and performing text manipulation with string functions. The chapter also introduces ``subqueries`` and ``self joins``, providing practical examples that reflect real-world analytical scenarios and advanced query logic.
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
