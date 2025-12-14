@@ -169,4 +169,118 @@ FROM customer;
 SELECT LOWER(LEFT(first_name,1)) || LOWER(last_name) || '@gmail.com' AS customer_email
 FROM customer;
 
+-- "SubQuery"
 
+-- Here we investigate how to perform subquery as well as the EXISTS functions.
+
+--Task: Get list of studnets who scored better than the average grade.
+
+-- Syntax:	SELECT student, grade
+--			FROM test_scores
+--			WHERE grade > (SELECT AVG(grade)
+--			FROM test_scores)
+
+-- The query in the paranthesis is performed first.
+
+-- A subquery can be operate on a seperate table:
+
+--	SELECT student, grade
+--	FROM test_scores
+--	WHERE student IN 
+-- 	(SELECT student
+--	FROM honor_roll_table)
+
+-- "EXISTS" Operator
+
+-- This is used to test for existance of rows in a subquery.
+
+-- Syntax:	SELECT column_name
+--			FROM table_name
+--			WHERE EXISTS
+--			(SELECT column_name
+--			FROM table_name
+--			WHERE condition);
+
+SELECT *
+FROM film;
+
+-- Task: Find the films for which rental rate is higher than average rental rate.
+
+-- Note: Somtimes it is easy to start with the subquery.
+
+SELECT title, rental_rate
+FROM film
+WHERE rental_rate > (SELECT AVG(rental_rate)
+FROM film);
+
+-- Now let's trya subquery with a JOIN
+
+SELECT *
+FROM rental;
+
+SELECT *
+FROM inventory;
+
+-- Task: Grab film titles that are retuned during a chosen dates.
+
+SELECT *
+FROM rental
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30';
+
+-- Note that the film ID is not there in the rental table.
+-- However, inventory ID is there and it is connected to film ID.
+
+SELECT inventory.film_id
+FROM rental
+INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30';
+
+SELECT film_id, title
+FROM film
+WHERE film_id IN
+(SELECT inventory.film_id
+FROM rental
+INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30');
+
+-- Task: Find a customer (fist and last names) who have at least one payment that is greater than 11.
+
+SELECT first_name, last_name
+FROM customer AS c
+WHERE EXISTS
+(SELECT *
+FROM payment AS p
+WHERE p.customer_id = c.customer_id AND amount > 11);
+
+-- We can also easily find customers paid less than or equal to 11 with "NOT EXISTS".
+
+SELECT first_name, last_name
+FROM customer AS c
+WHERE NOT EXISTS
+(SELECT *
+FROM payment AS p
+WHERE p.customer_id = c.customer_id AND amount > 11);
+
+-- "SELF-JOIN"
+
+-- This is a query in which a table is joined to itself.
+-- It is usefull for comparing values in a column of a rows within the same table.
+-- There are no special keyword for a self join. It is simply standard JOIN syntax with the same table in both parts.
+-- Here it is necessary to use an alias for the table. Otherwise the table names would be ambiguous.
+
+-- Syntax:	SELECT tableA.col, tableB.com
+--			FROM table AS tableA
+--			JOIN table AS tableB ON tableA.some_col = tableB.other_col;
+
+-- Task: Find all the pairs of movies which have same length.
+
+SELECT *
+FROM film;
+
+SELECT title
+FROM film
+WHERE length = 117;
+
+SELECT f1.title, f2.title, f1.length
+FROM film AS f1
+INNER JOIN film as f2 ON f1.film_id != f2.film_id AND f1.length = f2.length;
