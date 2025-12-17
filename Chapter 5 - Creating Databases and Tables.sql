@@ -55,10 +55,33 @@
 -- UNIQUE (column_list): Forces the values stored in the columns listed inside the parentheses to be unique.
 -- PRIMARY KEY (column_list): Primary key on multiple columns.
 
+-- CREATE Table
 
+-- Syntax:	CREATE TABLE table_name(
+--			column_name TYPE column_constraint,
+--			column_name TYPE column_constraint,
+--			..,
+--			table_constraint table_constraint
+--			) INHERITS existing_table_name;
 
+-- Let's first focus on creating tables and adding columns.
 
+-- When creating a primary id, in most cases data type is "SERIAL".
+-- This is because it has some nice properties.
+-- In PostgreSQL, a sequence is a special kind of database object that generates a sequence of integers.
+-- And it will be use as a primary key.
+-- If a a row is later removed, the column with SERIAL data type will not adjust.
 
+-- Create first table:
+-- Note: Maximum charactors for a username is 50.
+-- Note: No "NOT NULL" for last_loging. Example: If you have just created an account, no information about last login.
 
-
+CREATE TABLE account(
+	user_id SERIAL PRIMARY KEY,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	email VARCHAR(250) UNIQUE NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+	last_login TIMESTAMP
+) 
 
