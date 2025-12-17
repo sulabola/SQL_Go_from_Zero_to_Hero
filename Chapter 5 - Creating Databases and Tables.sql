@@ -30,6 +30,32 @@
 -- A table can have multiple foreign keys.
 -- Note: We would not see a notation ("[FK]") for foreign keys.
 
+-- "Constraints"
+
+-- These are the rules enforced on data columns on table.
+-- These prevent invalid data from being entered into the database.
+-- Constraints are devided into 2 main categories: Column contraints and Table constraints
+-- Column contraints: Constraints apply to a column.
+-- Table constraints: Constraints applied to the entire table.
+
+-- Common constraints:
+
+-- Column constraints:
+-- NOT NULL: Ensures that a column cannot have a NULL value.
+-- UNIQUE: Ensures that all values in a column are different.
+-- Primary Key
+-- Foreign Key
+-- CHECK: Ensures that all values ina column satify certain conditions (e.g., less than 20)
+-- EXCLUSION: Ensures that if any two rows are compared on the specified column/expression using the specified
+--				operator, not all of these comparisons will return TRUE.
+
+-- Table constraints:
+-- CHECK (condition): Check a condition when inserting or updating data.
+-- REFERENCES: Constrain the value stored in the column that must exist in a column in another table.
+-- UNIQUE (column_list): Forces the values stored in the columns listed inside the parentheses to be unique.
+-- PRIMARY KEY (column_list): Primary key on multiple columns.
+
+
 
 
 
