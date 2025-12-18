@@ -83,5 +83,21 @@ CREATE TABLE account(
 	email VARCHAR(250) UNIQUE NOT NULL,
 	created_on TIMESTAMP NOT NULL,
 	last_login TIMESTAMP
-) 
+)
 
+-- Let's create more tables and link with foreign keys
+
+-- Job Table
+
+CREATE TABLE job(
+	job_id SERIAL PRIMARY KEY,
+	job_name VARCHAR(200) UNIQUE NOT NULL
+)
+
+-- Account Job Table with Reference Keys
+
+CREATE TABLE account_job(
+	user_id INTEGER REFERENCES account(user_id),
+	job_id INTEGER REFERENCES job(job_id),
+	hire_date TIMESTAMP
+)
