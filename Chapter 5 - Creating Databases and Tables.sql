@@ -306,7 +306,100 @@ FROM job;
 --			ALTER COLUMN col_name
 --			SET DEFAULT value / DROP DEFAULT / SET NOT NULL / DROP NOT NULL / ADD CONSTRAINTS constaint_name;
 
+-- Now we text these commands with a newely created table.
 
+CREATE TABLE information(
+	info_id SERIAL PRIMARY KEY,
+	title VARCHAR(500) NOT NULL,
+	person VARCHAR(50) NOT NULL UNIQUE
+);
 
+SELECT *
+FROM information;
 
+-- Rename the table
 
+ALTER TABLE information
+RENAME TO new_info;
+
+SELECT *
+FROM new_info;
+
+-- Rename a column
+
+ALTER TABLE new_info
+RENAME COLUMN person TO people;
+
+SELECT *
+FROM new_info;
+
+-- Alter constraints
+-- First we try entering the data
+
+--	INSERT INTO new_info(title)
+--	VALUES
+--		('some new title')
+
+-- The above code will give an error. Because "people" cannot be null. Thus, we alter the constraint.
+
+ALTER TABLE new_info
+ALTER COLUMN people DROP NOT NULL;
+
+-- Now try:
+
+INSERT INTO new_info(title)
+VALUES
+	('some new title');
+
+SELECT *
+FROM new_info;
+
+-- "DROP" Keyword
+
+-- DROP allow us to completly remove column in a table.
+-- In postgreSQL, this will automatically remove indexes and constraints involving the column.
+-- It will not remove column with dependecies without additional "CASCADE" clause.
+
+-- General syntax:	ALTER TABLE table_name
+--					DROP COLUMN col_name;
+
+-- Remove all dependecies:
+
+-- Syntax:	ALTER TABLE table_name
+--			DROP COLUMN col_name CASCADE;
+
+-- Check for existence to avoid error
+
+-- Syntax:	ALTER TABLE table_name
+--			DROP COLUMN IF EXISTS col_name;
+
+-- We can also frop multiple columns:
+
+-- Syntax:	ALTER TABLE table_name
+--			DROP COLUMN col_one,
+--			DROP COLUMN col_two;
+
+SELECT *
+FROM new_info;
+
+-- Drop people column
+
+ALTER TABLE new_info
+DROP COLUMN people;
+
+SELECT *
+FROM new_info;
+
+ALTER TABLE new_info
+DROP COLUMN IF EXISTS people;
+
+-- "CHECK" Constraints
+
+-- This allow us to create more customized constraints that adhere to a certain condition.
+-- E.g., Make sure all inserted integer values fall below a certain threshold.
+
+-- General syntax:	CREATE TABLE example(
+--					ex_d SERIAL PRIMARY KEY,
+--					age SMALLINT CHECK (age > 21),
+--					parent_age SMALLINT CHECK (parent_age > age)
+--					);
