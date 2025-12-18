@@ -227,5 +227,86 @@ SET last_login = created_on;
 SELECT *
 FROM account;
 
+-- Updates based on two tables.
+
+-- Change hire date in account_job table based on another column
+
+UPDATE account_job
+SET hire_date = account.created_on
+FROM account
+WHERE account_job.user_id = account.user_id;
+
+SELECT *
+FROM account_job;
+
+-- Reset account table entries
+
+UPDATE account
+SET last_login = CURRENT_TIMESTAMP
+RETURNING email, created_on, last_login;
+
+-- "DELETE" Clause
+
+-- We can use this to remove rows from a table.
+
+-- Example:	DELETE FROM table
+--			WHERE row_id = 1;
+
+-- We can also delete rows based on their prsence in other tables
+
+-- Example:	DELETE FROM tableA
+--			USING tableB
+--			WHERE tableA.id = tableB.id;
+
+-- We can also delete all rows from a table
+
+-- Syntax: DELETE FROM table
+
+-- Here also we can view  which rows have been removed.
+
+SELECT *
+FROM job;
+
+-- Will add a new job and remove it.
+
+INSERT INTO job(job_name)
+VALUES
+	('Cowboy');
+
+SELECT *
+FROM job;
+
+DELETE FROM job
+WHERE job_name = 'Cowboy'
+RETURNING job_id, job_name;
+
+SELECT *
+FROM job;
+
+-- "ALTER" Clause
+
+-- This allow for changes to an existing table structure
+-- add/drop/rename columns, chnage data type, set default values, check constraints, rename tables
+
+-- General syntax:	ALTER TABLE table_name action
+
+-- Adding columns:
+
+-- Syntax:	ALTER TABLE table_name
+--			ADD COLUMN new_col TYPE;
+
+-- Remove columns:
+
+-- Syntax:	ALTER TABLE table_name
+--			DROP COLUMN col_name;
+
+-- ALTER constraints:
+
+--Syntax:	ALTER TABLE table_name
+--			ALTER COLUMN col_name
+--			SET DEFAULT value / DROP DEFAULT / SET NOT NULL / DROP NOT NULL / ADD CONSTRAINTS constaint_name;
+
+
+
 
 
