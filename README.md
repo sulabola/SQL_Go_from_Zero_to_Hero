@@ -40,6 +40,12 @@ This chapter focuses on advanced SQL techniques used for more complex data analy
 
 ---
 
+### Chapter 5 – Creating Databases and Tables
+
+This chapter focuses on database and table creation fundamentals in SQL. It covers core data types, primary keys and foreign keys, and the use of constraints to enforce data integrity. Practical examples demonstrate how to create tables using `CREATE TABLE`, insert and modify data with `INSERT`, `UPDATE`, and `DELETE`, and manage table structures using `ALTER TABLE` and `DROP TABLE`. The chapter also introduces `CHECK` constraints to validate data entries, providing a solid foundation for designing and maintaining relational databases.
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
