@@ -83,7 +83,7 @@ CREATE TABLE account(
 	email VARCHAR(250) UNIQUE NOT NULL,
 	created_on TIMESTAMP NOT NULL,
 	last_login TIMESTAMP
-)
+);
 
 -- Let's create more tables and link with foreign keys
 
@@ -92,7 +92,7 @@ CREATE TABLE account(
 CREATE TABLE job(
 	job_id SERIAL PRIMARY KEY,
 	job_name VARCHAR(200) UNIQUE NOT NULL
-)
+);
 
 -- Account Job Table with Reference Keys
 
@@ -100,4 +100,132 @@ CREATE TABLE account_job(
 	user_id INTEGER REFERENCES account(user_id),
 	job_id INTEGER REFERENCES job(job_id),
 	hire_date TIMESTAMP
-)
+);
+
+-- "INSERT" Command
+
+-- INSERT allows to add in rows to a table
+
+-- Syntax:	INSERT INTO table(column1, column2,...)
+--			VALUES
+--				(value1, value2,...),
+--				(value1, value2,...),
+--				...;
+
+-- We can also insert values from another table.
+
+-- Syntax:	INSERT INTO table(column1, column2,...)
+--			SELECT column1, column2,...
+--			FROM another_table
+--			WHERE condition;
+
+-- Note: When inserting data from another dable, the datatype should match.
+
+-- Let's insert value to account table
+
+SELECT *
+FROM account;
+
+-- Note: user_id is SERIAL, so we do not need to worry about the values.
+-- Note: There are not conditions on last_loging. Thus, we do not need to provide it.
+
+INSERT INTO account(username, password, email, created_on)
+VALUES
+	('Jose','password','jose@mail.com',CURRENT_TIMESTAMP);
+
+SELECT *
+FROM account;
+
+-- Insert data into job table
+
+INSERT INTO job(job_name)
+VALUES
+	('Astronaut');
+
+SELECT *
+FROM job;
+
+INSERT INTO job(job_name)
+VALUES
+	('President');
+
+SELECT *
+FROM job;
+
+INSERT INTO account_job(user_id, job_id, hire_date)
+VALUES
+	(1, 1, CURRENT_TIMESTAMP);
+
+SELECT *
+FROM account_job;
+
+--INSERT INTO account_job(user_id, job_id, hire_date)
+--VALUES
+--	(10, 10, CURRENT_TIMESTAMP);
+
+-- Note: The above code will give us an error. This is becase "user_id" is a foreign key and the value 10 does not exists.
+
+-- "UPDATE" Keyword
+
+-- This allows for the changing of values of the columns in a table.
+
+-- Syntax:	UPDATE table
+--			SET column1 = value1,
+--				column2 = value2,
+--				...
+--			WHERE
+--				condition;
+
+-- Example: update the account table. If the last loggin is empty, replace it with current time stamp
+
+--	UPDATE account
+--	SET last_login = CURRENT_TIMESTAMP
+--	WHERE last_login IS NULL;
+
+-- We can also resent everything without WHERE condition.
+
+--	UPDATE account
+--	SET last_login = CURRENT_TIMESTAMP;
+
+-- Note: this will update all the entries.
+
+-- We can also set everything based on another column. (If needed we can add WHERE condition)
+
+--	UPDATE account
+--	SET last_login = created_on;
+
+-- We can update entries based on another table's values (UPDATE join)
+
+--	UPDATE TableA
+--	SET original_col = TableB.new_col
+--	FROM TableB
+--	WHERE TableA.id = TableB.id;
+
+-- The above updates do not return the updated tables. However, we can view the affected rows.
+
+-- Syntax:	UPDATE account
+--			SET last_login = created_on
+--			RETURNING account_id, last_login;
+
+SELECT *
+FROM account;
+
+-- Note: last_login is null. We trye to update that next.
+
+-- With current time stamp
+UPDATE account
+SET last_login = CURRENT_TIMESTAMP;
+
+SELECT *
+FROM account;
+
+-- with created_on
+
+UPDATE account
+SET last_login = created_on;
+
+SELECT *
+FROM account;
+
+
+
