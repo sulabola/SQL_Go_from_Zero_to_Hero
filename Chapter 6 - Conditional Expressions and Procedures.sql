@@ -152,3 +152,26 @@ SELECT
 		END) AS PG13
 FROM film;
 
+-- "COALESCE" Function
+
+-- This functions accepts an unlimited number of arguments.
+-- It returns the first argument that is not null.
+-- If all arguments are null, the function will return null.
+
+-- Syntax:	COALESCE(arg1, arg2, ...)
+
+-- Note: Typically areguments are for columns.
+
+-- This function is useful when querying a table that contains null values and substituting it with another value.
+
+-- Example: Let we have the price of items and discount.
+-- For one of the product, discount is null.
+-- If we calculate the final price (price-discount) in usual way, it may fails and show 'null'
+-- This can be addressed with COALESCE
+
+--	SELECT item, (price - COALESCE(discount,0)) AS final
+--	FROM table
+
+
+
+
