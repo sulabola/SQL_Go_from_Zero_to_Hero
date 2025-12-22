@@ -330,5 +330,36 @@ DROP VIEW IF EXISTS c_info;
 
 -- Importing and Exporting Data
 
+-- The import/export functionality of pgAdmin allows us to import data from a CSV file to an already existing table.
+
+-- Import to nothe that:
+-- Not every outside data file will work (issues: formatting, macros, data types)
+-- We must provide the correct file path.
+-- The import command does not create a table for you. It assumes a table is already created.
+
+-- Now, let's assume I have data available in a CSV file (3 columns: A, B. C).
+-- File name: sample_table.csv
+
+-- First, we will create a table to match data avaible in the CSV file.
+
+CREATE TABLE simple(
+	A INTEGER,
+	B INTEGER,
+	C INTEGER
+);
 
 
+-- Now let's import data from the CSV file.
+
+SELECT *
+FROM simple;
+
+-- Locate the table in the correct database and right click to view the options.
+-- Select the option "Import/Export Data"
+-- Choose the correct file and update options accordingly.
+-- Then click ok. (We will receive a notification)
+
+SELECT *
+FROM simple;
+
+-- For export, steps are very similar (instead od import we will choose the export option).
