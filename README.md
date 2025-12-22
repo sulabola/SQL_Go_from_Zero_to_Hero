@@ -46,6 +46,12 @@ This chapter focuses on database and table creation fundamentals in SQL. It cove
 
 ---
 
+### Chapter 6 – Conditional Expressions and Procedures
+
+This chapter focuses on adding logic, flexibility, and structure to SQL queries using conditional expressions and database objects. It covers the use of `CASE` statements for conditional logic, handling missing or null values with `COALESCE` and `NULLIF`, and type conversion using `CAST`. The chapter also introduces SQL views for query abstraction and demonstrates how to import and export data efficiently, reflecting common real-world database workflows.
+
+---
+
 ### Reference
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
