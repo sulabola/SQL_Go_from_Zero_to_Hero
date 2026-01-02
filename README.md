@@ -56,6 +56,6 @@ This chapter focuses on adding logic, flexibility, and structure to SQL queries 
 
 **Udemy Course:** The Complete SQL Bootcamp: Go from Zero to Hero
 
-**Instructors:** Jose Portilla, Head of Data Science at Pierian Training
+**Instructor:** Jose Portilla, Head of Data Science at Pierian Training
 
 
